@@ -1,5 +1,5 @@
-{{ $title := .Title }}
-{{ $description := .Description | default .Site.Params.description | default .Summary | truncate 150 }}
+{{ $title := .Params.ogTitle | default .Title }}
+{{ $description := .Params.ogDescription | default .Description | default .Site.Params.description | default .Summary | truncate 150 }}
 
 {{ $uniqueName := "" }}
 {{ with .File }}
@@ -9,34 +9,28 @@
 {{ end }}
 
 {{ $svg := printf `
-<svg xmlns="http://www.w3.org/2000/svg" width="1900" height="630" viewBox="0 0 1900 630">
-    <style>
-        @font-face {
-          font-family: 'Newsreader';
-          src: url('/fonts/Newsreader.woff2') format('woff2');
-        }
-        .title {
-          font-family: 'Newsreader', serif;
-          font-size: 90px;
-          font-weight: 600;
-          fill: #141413;
-          text-anchor: start;
-          font-display: block;
-        }
-        .description {
-          font-family: 'Newsreader', serif;
-          font-size: 50px;
-          font-weight: 400;
-          fill: #141413;
-          text-anchor: start;
-          font-display: block;
-        }
-      </style>
-  <rect width="1900" height="630" fill="#f0efea" />
-  <text x="950" y="280" class="title">%s</text>
-  <text x="950" y="400" class="description">%s</text>
-</svg>
-` $title $description | safeHTML }}
+    <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+        <style>
+            @font-face {
+              font-family: 'Newsreader';
+              src: url('/fonts/Newsreader.woff2') format('woff2');
+            }
+            .title, .description {
+              font-family: 'Newsreader', serif;
+              fill: #141413;
+              text-anchor: start;
+              line-height: 1.1;
+            }
+        </style>
+        <rect width="1200" height="630" fill="#f0efea" />
+        <foreignObject x="80" y="200" width="840" height="300">
+            <div xmlns="http://www.w3.org/1999/xhtml">
+                <div style="font-family: Newsreader, serif; font-size: 78px; font-weight: 600; margin-bottom: 20px; word-wrap: break-word;">%s</div>
+                <div style="font-family: Newsreader, serif; font-size: 70px; font-weight: 400; word-wrap: break-word;">%s</div>
+            </div>
+        </foreignObject>
+    </svg>
+    ` $title $description | safeHTML }}
 
 {{ $generatedSVG := resources.FromString $uniqueName $svg | resources.ExecuteAsTemplate $uniqueName . }}
 
