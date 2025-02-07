@@ -2,10 +2,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{{ .Title }}</title>
-    <meta property="og:title" content="{{ .Title }}" />
-    <meta property="og:description" content="{{ .Params.description }}" />
-    <meta property="og:url" content="{{ .Permalink }}" />
-    <meta property="og:image" content="{{ .Site.Params.ogImage }}" />
+    <meta property="og:title" content="{{ if .IsHome }}{{ .Site.Params.ogTitle }}{{ else }}{{ .Title }}{{ end }}" />
+    <meta property="og:description" content="{{ if .IsHome }}{{ .Site.Params.ogDescription }}{{ else }}{{ .Params.description }}{{ end }}" />
+    <meta property="og:url" content="{{ if .IsHome }}{{ .Site.Params.ogUrl }}{{ else }}{{ .Permalink }}{{ end }}" />
+    <meta property="og:image" content="{{ if .IsHome }}{{ .Site.Params.ogImage }}{{ else }}{{ .Site.Params.ogImage }}{{ end }}" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="author" content="{{ .Site.Params.author }}" />
     <meta name="description" content="{{ .Params.description }}" />
