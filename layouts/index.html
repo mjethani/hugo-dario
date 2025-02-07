@@ -8,10 +8,13 @@
 
     <main class="content-wrapper">
         <article class="content-container">
+            {{- with site.Params.homeInfoParams }}
             <section>
-                <p>Here is some text</p>
-                <p>Here is some more text</p>
+                <h1>{{ .Title | markdownify }}</h1>
+                <p>{{ .Content | markdownify }}</p>
+                <p>{{ .SubContent | markdownify }}</p>
             </section>
+            {{- end }}
 
             <section>
                 <h3>Essays</h3>
