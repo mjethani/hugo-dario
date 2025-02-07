@@ -1,72 +1,7 @@
 <!doctype html>
 <html lang="en">
 
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{{ .Title }}</title>
-    <meta property="og:title" content="{{ .Title }}" />
-    <meta property="og:description" content="{{ .Site.Params.description }}" />
-    <meta property="og:url" content="{{ .Permalink }}" />
-    <meta property="og:image" content="{{ .Site.Params.ogImage }}" />
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="author" content="{{ .Site.Params.author }}" />
-    <meta name="description" content="{{ .Site.Params.description }}" />
-
-    <style>
-        html {
-            visibility: hidden;
-        }
-
-        html.js-loaded {
-            visibility: visible;
-        }
-
-        header h1 a {
-            display: block;
-            width: 140px;
-            font-family: Newsreader, serif;
-        }
-    </style>
-
-    <link rel="preload" href="{{ "fonts/Newsreader.woff2" | relURL }}" as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href="{{ "fonts/Newsreader-italic.woff2" | relURL }}" as="font" type="font/woff2" crossorigin />
-    <link rel="stylesheet" href="{{ "css/styles.css" | relURL }}" />
-    <link rel="icon" type="image/x-icon" href="{{ "favicon.ico" | relURL }}" />
-    <link rel="apple-touch-icon" href="{{ "apple-touch-icon.png" | relURL }}" />
-
-    <script>
-        (function () {
-            try {
-                const root = document.documentElement;
-                const classes = ["preload"];
-
-                // Default to dark mode if not set in localStorage
-                if (localStorage.getItem("darkMode") === null) {
-                    localStorage.setItem("darkMode", "enabled");
-                }
-                
-                if (localStorage.getItem("darkMode") === "enabled") {
-                    classes.push("dark-mode");
-                    root.style.setProperty("--bg-color", "#141413");
-                    root.style.setProperty("--text-color", "#f0efea");
-                }
-                root.classList.add(...classes);
-
-                queueMicrotask(() => {
-                    root.classList.add("js-loaded");
-                });
-            } catch (e) {
-                document.documentElement.classList.add(
-                    "preload",
-                    "js-loaded",
-                );
-            }
-        })();
-    </script>
-
-    <script src="{{ "js/darkmode.js" | relURL }}" defer></script>
-</head>
+{{ partial "head.html" . }}
 
 <body>
     {{ partial "header.html" . }}
@@ -74,12 +9,8 @@
     <main class="content-wrapper">
         <article class="content-container">
             <section>
-                <p>
-                    Parker Beard is a software engineer and entrepreneur. He is passionate about technology, freedom,
-                    and the future of humanity.
-                </p>
-                <p>Parker is currently studying philosophy at Pepperdine University.
-                </p>
+                <p>Here is some text</p>
+                <p>Here is some more text</p>
             </section>
 
             <section>
@@ -97,22 +28,12 @@
                 <h3>Links</h3>
                 <ul>
                     <li>
-                        <a href="https://github.com/parkerjbeard" target="_blank" rel="noopener noreferrer">Github</a>
+                        <a href="https://github.com/grantbirki/dario" target="_blank" rel="noopener noreferrer">GitHub</a>
                     </li>
                 </ul>
             </section>
-            <p><a href="/subscribe.html" rel="noopener noreferrer">Subscribe</a>
-                for email alerts about new posts.</p>
-
         </article>
     </main>
-
-    <script>
-        console.log(
-            "%cThis is a template clone of Dario Amodei's website. You can find it on my Github: https://github.com/parkerjbeard/parkerjbeard.com",
-            "font-family: monospace; font-size: 14px; color: #141413; background-color: #F0EFEA; padding: 5px; border-radius: 5px;",
-        );
-    </script>
 </body>
 
 </html>

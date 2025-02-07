@@ -46,6 +46,20 @@ body,
     color 0.2s;
 }
 
+html {
+  visibility: hidden;
+}
+
+html.js-loaded {
+  visibility: visible;
+}
+
+header h1 a {
+  display: block;
+  width: 140px;
+  font-family: Newsreader, serif;
+}
+
 /* Dark Mode Variables */
 .dark-mode {
   --bg-color: #141413;

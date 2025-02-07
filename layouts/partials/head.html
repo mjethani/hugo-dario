@@ -10,25 +10,11 @@
     <meta name="author" content="{{ .Site.Params.author }}" />
     <meta name="description" content="{{ .Params.description }}" />
 
-    <style>
-        html {
-            visibility: hidden;
-        }
-
-        html.js-loaded {
-            visibility: visible;
-        }
-
-        header h1 a {
-            display: block;
-            width: 140px;
-            font-family: Newsreader, serif;
-        }
-    </style>
-
     <link rel="preload" href="{{ "fonts/Newsreader.woff2" | relURL }}" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="{{ "fonts/Newsreader-italic.woff2" | relURL }}" as="font" type="font/woff2" crossorigin />
+
     <link rel="stylesheet" href="{{ "css/styles.css" | relURL }}" />
+
     <link rel="icon" type="image/x-icon" href="{{ "favicon.ico" | relURL }}" />
     <link rel="apple-touch-icon" href="{{ "apple-touch-icon.png" | relURL }}" />
 
