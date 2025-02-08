@@ -10,10 +10,12 @@
 {{ end }}
 
 {{ $uniqueName := "" }}
+{{ $isDefault := false }}
 {{ with .File }}
   {{ $uniqueName = printf "og/og-image-%s.svg" .UniqueID }}
 {{ else }}
-  {{ $uniqueName = "og/og-image-default.svg" }}
+  {{ $uniqueName = "default.png" }}
+  {{ $isDefault = true }}
 {{ end }}
 
 {{ $svg := printf `
@@ -42,11 +44,23 @@
 
 {{ $generatedSVG := resources.FromString $uniqueName $svg | resources.ExecuteAsTemplate $uniqueName . }}
 
+<!-- Determine which image URL to use -->
+{{ $ogImageURL := "" }}
+{{ if $isDefault }}
+  {{ $ogImageURL = "/default.png" }}
+{{ else }}
+  {{ with .Params.ogImage }}
+    {{ $ogImageURL = . }}
+  {{ else }}
+    {{ $ogImageURL = $generatedSVG.RelPermalink }}
+  {{ end }}
+{{ end }}
+
 <!-- General Open Graph Meta Tags -->
 <meta property="og:title" content="{{ $title }}" />
 <meta property="og:description" content="{{ $description }}" />
-<meta property="og:image" content="{{ $baseURL }}{{ $generatedSVG.RelPermalink }}" />
-<meta property="og:image:type" content="image/svg+xml" />
+<meta property="og:image" content="{{ $baseURL }}{{ $ogImageURL }}" />
+<meta property="og:image:type" content='{{ cond (strings.HasSuffix $ogImageURL ".svg") "image/svg+xml" "image/png" }}' />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
 <meta property="og:type" content="website" />
@@ -56,4 +70,4 @@
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="{{ $title }}" />
 <meta name="twitter:description" content="{{ $description }}" />
-<meta name="twitter:image" content="{{ $baseURL }}{{ $generatedSVG.RelPermalink }}" />
+<meta name="twitter:image" content="{{ $baseURL }}{{ $ogImageURL }}" />
