@@ -10,7 +10,7 @@
         <article class="content-container">
             {{- with site.Params.homeInfoParams }}
             <section>
-                <h1>{{ .Title | markdownify }}</h1>
+                <h1 class="smaller">{{ .Title | markdownify }}</h1>
                 <p>{{ .Content | markdownify }}</p>
                 <p>{{ .SubContent | markdownify }}</p>
             </section>
