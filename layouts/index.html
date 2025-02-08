@@ -17,7 +17,7 @@
             {{- end }}
 
             <section>
-                <h3>Essays</h3>
+                <h3>Posts</h3>
                 <ul>
                     {{ range .Site.RegularPages }}
                     <li>
@@ -27,14 +27,7 @@
                 </ul>
             </section>
 
-            <section>
-                <h3>Links</h3>
-                <ul>
-                    <li>
-                        <a href="https://github.com/grantbirki/dario" target="_blank" rel="noopener noreferrer">GitHub</a>
-                    </li>
-                </ul>
-            </section>
+        {{ partial "footer.html" . }}
         </article>
     </main>
 </body>
