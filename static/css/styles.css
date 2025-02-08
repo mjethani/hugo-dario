@@ -307,6 +307,10 @@ h1 {
   line-height: 1.1;
 }
 
+h1.smaller {
+  font-size: 2em;
+}
+
 h2 {
   font-size: 1.6em;
   margin-top: 1em;
