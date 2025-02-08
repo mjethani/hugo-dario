@@ -6,6 +6,12 @@ View the [live demo](https://log.birki.io) to see what it looks like.
 
 ![home](docs/assets/home.png)
 
+## Performance
+
+This theme is designed to be minimal and the page speed insights are as follows:
+
+![100](docs/assets/100.png)
+
 ## Installation
 
 > To view a real example of a project using this theme, check out [grantbirki/log](https://github.com/GrantBirki/log) which is where I have the demo deployed.
