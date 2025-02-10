@@ -18,7 +18,6 @@ tags = [
 features = [
   "blog",
   "opengraph",
-  "favicon",
   "theme-toggle"
 ]
 

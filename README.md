@@ -4,13 +4,13 @@ A minimal hugo theme inspired by Dario Amodei's personal [website](https://dario
 
 View the [live demo](https://log.birki.io) to see what it looks like ([source code](https://github.com/GrantBirki/dario)).
 
-![home](docs/assets/home.png)
+![home](https://raw.githubusercontent.com/GrantBirki/dario/main/docs/assets/home.png)
 
 ## Performance
 
 This theme is designed to be minimal and the page speed insights are as follows:
 
-![100](docs/assets/100.png)
+![100](https://raw.githubusercontent.com/GrantBirki/dario/main/docs/assets/100.png)
 
 ## Installation
 
