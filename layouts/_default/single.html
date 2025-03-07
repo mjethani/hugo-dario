@@ -15,7 +15,9 @@
                 <time datetime="{{ .Date }}">{{ .Date.Format "January 2, 2006" }}</time>
             </p>
 
-            {{ .Content }}
+            {{- if not (.Param "disableAnchoredHeadings") }}
+            {{- partial "anchored_headings.html" .Content -}}
+            {{- else }}{{ .Content }}{{ end }}
         </article>
     </main>
 
