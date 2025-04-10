@@ -44,9 +44,7 @@
 
 body,
 .toc-container {
-  transition:
-    background-color 0.2s,
-    color 0.2s;
+  transition: background-color 0.2s, color 0.2s;
 }
 
 html {
@@ -118,9 +116,7 @@ body {
   background-color: var(--bg-color);
   margin: 0;
   padding: 0;
-  transition:
-    background-color 0.2s ease,
-    color 0.2s ease;
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 code {
@@ -150,12 +146,12 @@ h3:hover .anchor,
 h4:hover .anchor,
 h5:hover .anchor,
 h6:hover .anchor {
-    display: inline-flex;
-    color: var(--text-color);
-    margin-inline-start: 8px;
-    font-weight: 500;
-    user-select: none;
-    opacity: 0.5;
+  display: inline-flex;
+  color: var(--text-color);
+  margin-inline-start: 8px;
+  font-weight: 500;
+  user-select: none;
+  opacity: 0.5;
 }
 
 a {
@@ -228,7 +224,6 @@ header > div {
   justify-content: space-between;
   align-items: center;
   position: relative;
-  padding: 0 12px;
   min-height: 44px; /* Add this */
 }
 
@@ -297,9 +292,7 @@ html.js-loaded .header-controls {
   right: 0;
   bottom: 0;
   background-color: var(--bg-color);
-  transition:
-    background-color 0.2s ease,
-    border-color 0.2s ease;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
   border-radius: 34px;
   border: 1px solid var(--text-color);
 }
@@ -312,9 +305,7 @@ html.js-loaded .header-controls {
   left: 2px;
   bottom: 2px;
   background-color: var(--text-color);
-  transition:
-    transform 0.2s ease,
-    background-color 0.2s ease;
+  transition: transform 0.2s ease, background-color 0.2s ease;
   border-radius: 50%;
 }
 
