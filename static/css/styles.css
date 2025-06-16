@@ -623,3 +623,10 @@ footer {
   font-style: italic;
   width: 100%;
 }
+
+.content-wrapper img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 1em auto;
+}
