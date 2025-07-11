@@ -19,7 +19,7 @@
             <section>
                 <h2>Posts</h2>
                 <ul>
-                    {{ range .Site.RegularPages }}
+                    {{ range where .Site.RegularPages "Section" "posts" }}
                     <li>
                         <a href="{{ .Permalink }}">{{ .Title }}</a>
                     </li>
