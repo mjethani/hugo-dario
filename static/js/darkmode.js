@@ -44,18 +44,27 @@ function handleDarkModeToggle() {
 
 function initDarkMode() {
   const darkModeToggle = document.getElementById("darkModeToggle");
-  if (!darkModeToggle) return; // Early return if toggle doesn't exist
+  if (darkModeToggle) {
+    darkModeToggle.addEventListener("change", handleDarkModeToggle);
 
-  darkModeToggle.addEventListener("change", handleDarkModeToggle);
+    // Remove the no-animate class after a short delay
+    setTimeout(() => {
+      darkModeToggle.parentElement.classList.remove("no-animate");
+    }, 100);
+
+  } else {
+    // Toggle dark mode based on system preference
+    const darkModeMedia = window.matchMedia("(prefers-color-scheme: dark)");
+
+    darkModeMedia.addEventListener("change", ({ matches: newMode }) => {
+      localStorage.setItem("darkMode", newMode ? "enabled" : "disabled");
+      setDarkMode(newMode, true);
+    });
+  }
 
   // Check localStorage and set initial state without animation
   const savedDarkMode = localStorage.getItem("darkMode");
   setDarkMode(savedDarkMode === "enabled", false);
-
-  // Remove the no-animate class after a short delay
-  setTimeout(() => {
-    darkModeToggle.parentElement.classList.remove("no-animate");
-  }, 100);
 
   // Use once option for one-time cleanup
   window.addEventListener(
