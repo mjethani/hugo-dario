@@ -13,7 +13,7 @@
                 <ul>
                     {{ range .Data.Terms.Alphabetical }}
                     <li>
-                        <a href="{{ .Page.Permalink }}">{{ .Name }}</a> ({{ .Count }})
+                        <a href="{{ .Page.Permalink }}">{{ .Page.Name }}</a> ({{ .Count }})
                     </li>
                     {{ end }}
                 </ul>
