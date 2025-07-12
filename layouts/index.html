@@ -16,16 +16,18 @@
             </section>
             {{- end }}
 
+            {{ range sort (where .Site.Sections "Weight" "ne" -1) "Weight" }}
             <section>
-                <h2>Posts</h2>
+                <h2>{{ .Title }}</h2>
                 <ul>
-                    {{ range where .Site.RegularPages "Section" "posts" }}
+                    {{ range where .Site.RegularPages "Section" .Section }}
                     <li>
                         <a href="{{ .Permalink }}">{{ .Title }}</a>
                     </li>
                     {{ end }}
                 </ul>
             </section>
+            {{ end }}
 
         {{ partial "footer.html" . }}
         </article>
