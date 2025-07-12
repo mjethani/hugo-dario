@@ -43,19 +43,22 @@ function handleDarkModeToggle() {
 }
 
 function initDarkMode() {
-  const darkModeToggle = document.getElementById("darkModeToggle");
-  if (darkModeToggle) {
-    darkModeToggle.addEventListener("change", handleDarkModeToggle);
+  const toggleSwitch = document.querySelector(".toggle-switch");
+  if (getComputedStyle(toggleSwitch).visibility === "visible") {
+    // Toggle dark mode via switch
+    const darkModeToggle = document.getElementById("darkModeToggle");
+    if (darkModeToggle) {
+      darkModeToggle.addEventListener("change", handleDarkModeToggle);
 
-    // Remove the no-animate class after a short delay
-    setTimeout(() => {
-      darkModeToggle.parentElement.classList.remove("no-animate");
-    }, 100);
+      // Remove the no-animate class after a short delay
+      setTimeout(() => {
+        darkModeToggle.parentElement.classList.remove("no-animate");
+      }, 100);
+    }
 
   } else {
     // Toggle dark mode based on system preference
     const darkModeMedia = window.matchMedia("(prefers-color-scheme: dark)");
-
     darkModeMedia.addEventListener("change", ({ matches: newMode }) => {
       localStorage.setItem("darkMode", newMode ? "enabled" : "disabled");
       setDarkMode(newMode, true);

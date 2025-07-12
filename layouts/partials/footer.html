@@ -3,3 +3,12 @@
         <p>&copy; {{ now.Year }} {{ .Site.Title }}</p>
     </div>
 </footer>
+
+{{ if not .Site.Params.hideDarkModeToggle }}
+<script>
+  // Show dark mode toggle switch
+  const toggleSwitch = document.querySelector(".toggle-switch");
+  if (toggleSwitch)
+    toggleSwitch.classList.add("visible");
+</script>
+{{ end }}
