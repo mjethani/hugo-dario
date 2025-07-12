@@ -79,6 +79,27 @@ header h1 a {
   --code-bg: rgb(55, 56, 62);
   --hljs-bg: rgb(46, 46, 51);
 }
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-color: #141413;
+    --text-color: #f0efea;
+    --border-color: #444;
+    --footnote-bg-color: rgba(255, 255, 255, 0.15);
+    --footnote-hover-bg-color: rgba(255, 255, 255, 0.4);
+    --tooltip-bg-color: #2a2a2a;
+    --tooltip-text-color: #f0f0f0;
+    --tooltip-shadow-color: rgba(255, 255, 255, 0.15);
+    --subscribe-form-bg: transparent;
+    --subscribe-form-text: #f0efea;
+    --subscribe-button-bg: #f0efea;
+    --subscribe-button-text: #141413;
+    --invert-percentage: 100%;
+    --code-bg: rgb(55, 56, 62);
+    --hljs-bg: rgb(46, 46, 51);
+  }
+}
+
 /* Dark Mode Init - No Animation */
 .dark-mode-init .toggle-slider {
   transition: none !important;
