@@ -50,6 +50,10 @@ function initDarkMode() {
     if (darkModeToggle) {
       darkModeToggle.addEventListener("change", handleDarkModeToggle);
 
+      // Check localStorage and set initial state without animation
+      const savedDarkMode = localStorage.getItem("darkMode");
+      setDarkMode(savedDarkMode === "enabled", false);
+
       // Remove the no-animate class after a short delay
       setTimeout(() => {
         darkModeToggle.parentElement.classList.remove("no-animate");
@@ -59,15 +63,14 @@ function initDarkMode() {
   } else {
     // Toggle dark mode based on system preference
     const darkModeMedia = window.matchMedia("(prefers-color-scheme: dark)");
+    const isDarkMode = darkModeMedia.matches;
+    localStorage.setItem("darkMode", isDarkMode ? "enabled" : "disabled");
+    setDarkMode(isDarkMode, false);
     darkModeMedia.addEventListener("change", ({ matches: newMode }) => {
       localStorage.setItem("darkMode", newMode ? "enabled" : "disabled");
       setDarkMode(newMode, true);
     });
   }
-
-  // Check localStorage and set initial state without animation
-  const savedDarkMode = localStorage.getItem("darkMode");
-  setDarkMode(savedDarkMode === "enabled", false);
 
   // Use once option for one-time cleanup
   window.addEventListener(
