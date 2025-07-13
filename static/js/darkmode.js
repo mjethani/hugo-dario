@@ -1,16 +1,5 @@
 "use strict";
 
-const DARK_MODE_COLORS = {
-  dark: {
-    bg: "#141413",
-    text: "#f0efea",
-  },
-  light: {
-    bg: "#f0efea",
-    text: "#141413",
-  },
-};
-
 function setDarkMode(isDarkMode) {
   const initialReadyState = document.readyState;
 
@@ -27,13 +16,10 @@ function setDarkMode(isDarkMode) {
       });
     }
 
-    document.documentElement.classList.toggle("dark-mode", isDarkMode);
-    const colors = isDarkMode ? DARK_MODE_COLORS.dark : DARK_MODE_COLORS.light;
+    document.documentElement.classList.toggle("dark-mode-on", isDarkMode);
 
-    // Set both properties at once to minimize repaints
-    const style = document.documentElement.style;
-    style.setProperty("--bg-color", colors.bg);
-    style.setProperty("--text-color", colors.text);
+    // Set dark-mode-off to override media query styles
+    document.documentElement.classList.toggle("dark-mode-off", !isDarkMode);
 
     // Update the toggle switch state
     const darkModeToggle = document.getElementById("darkModeToggle");
@@ -44,7 +30,7 @@ function setDarkMode(isDarkMode) {
 }
 
 function handleDarkModeToggle() {
-  const isDarkMode = document.documentElement.classList.contains("dark-mode");
+  const isDarkMode = document.documentElement.classList.contains("dark-mode-on");
   const newMode = !isDarkMode;
 
   // Update localStorage and UI state together
