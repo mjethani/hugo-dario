@@ -1,7 +1,3 @@
-.preload * {
-  transition: none;
-}
-
 @font-face {
   font-family: "Newsreader";
   font-style: normal;
@@ -45,14 +41,6 @@
 body,
 .toc-container {
   transition: background-color 0.2s, color 0.2s;
-}
-
-html {
-  visibility: var(--preload-visibility);
-}
-
-html.js-loaded {
-  visibility: visible;
 }
 
 header h1 a {
@@ -100,19 +88,6 @@ header h1 a {
   }
 }
 
-/* Dark Mode Init - No Animation */
-.dark-mode-init .toggle-slider {
-  transition: none !important;
-}
-
-.dark-mode-init .toggle-input:checked + .toggle-label .toggle-slider {
-  transform: translateX(20px);
-}
-
-.animations-enabled .toggle-slider {
-  transition: transform 0.2s ease;
-}
-
 .dark-mode .toggle-input:checked + .toggle-label {
   background-color: var(--text-color);
 }
@@ -120,6 +95,11 @@ header h1 a {
 .dark-mode .toggle-input:checked + .toggle-label .toggle-slider {
   transform: translateX(20px);
   background-color: var(--bg-color);
+}
+
+/* Dark Mode Initialization */
+.dark-mode-init * {
+  transition: none !important;
 }
 
 /* Global Styles */
@@ -280,14 +260,9 @@ p a:hover {
   display: flex;
   align-items: center;
   gap: 12px;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.2s ease;
-}
-
-html.js-loaded .header-controls {
   opacity: 1;
   pointer-events: auto;
+  transition: opacity 0.2s ease;
 }
 
 /* Toggle Switch Styles */
@@ -342,14 +317,6 @@ html.js-loaded .header-controls {
 .toggle-input:checked + .toggle-label .toggle-slider {
   transform: translateX(20px);
   background-color: var(--bg-color);
-}
-
-.no-animate .toggle-slider {
-  transition: none;
-}
-
-.no-animate .toggle-label {
-  transition: none;
 }
 
 /* Typography */

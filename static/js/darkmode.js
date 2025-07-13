@@ -11,9 +11,22 @@ const DARK_MODE_COLORS = {
   },
 };
 
-function setDarkMode(isDarkMode, animate = true) {
+function setDarkMode(isDarkMode) {
+  const initialReadyState = document.readyState;
+
   // Handle class toggle and color updates in one batch for better performance
   requestAnimationFrame(() => {
+    if (initialReadyState !== "complete") {
+      // Apply initialization styles just for this paint
+      document.documentElement.classList.add("dark-mode-init");
+
+      requestAnimationFrame(() => {
+        if (initialReadyState !== "complete") {
+          document.documentElement.classList.remove("dark-mode-init");
+        }
+      });
+    }
+
     document.documentElement.classList.toggle("dark-mode", isDarkMode);
     const colors = isDarkMode ? DARK_MODE_COLORS.dark : DARK_MODE_COLORS.light;
 
@@ -26,9 +39,6 @@ function setDarkMode(isDarkMode, animate = true) {
     const darkModeToggle = document.getElementById("darkModeToggle");
     if (darkModeToggle) {
       darkModeToggle.checked = isDarkMode;
-      if (!animate) {
-        darkModeToggle.parentElement.classList.add("no-animate");
-      }
     }
   });
 }
@@ -39,50 +49,33 @@ function handleDarkModeToggle() {
 
   // Update localStorage and UI state together
   localStorage.setItem("darkMode", newMode ? "enabled" : "disabled");
-  setDarkMode(newMode, true);
+  setDarkMode(newMode);
 }
 
 function initDarkMode() {
-  const toggleSwitch = document.querySelector(".toggle-switch");
-  if (getComputedStyle(toggleSwitch).visibility === "visible") {
-    // Toggle dark mode via switch
-    const darkModeToggle = document.getElementById("darkModeToggle");
-    if (darkModeToggle) {
-      darkModeToggle.addEventListener("change", handleDarkModeToggle);
-
-      // Check localStorage and set initial state without animation
-      const savedDarkMode = localStorage.getItem("darkMode");
-      setDarkMode(savedDarkMode === "enabled", false);
-
-      // Remove the no-animate class after a short delay
-      setTimeout(() => {
-        darkModeToggle.parentElement.classList.remove("no-animate");
-      }, 100);
-    }
-
-  } else {
-    // Toggle dark mode based on system preference
-    const darkModeMedia = window.matchMedia("(prefers-color-scheme: dark)");
-    const isDarkMode = darkModeMedia.matches;
-    localStorage.setItem("darkMode", isDarkMode ? "enabled" : "disabled");
-    setDarkMode(isDarkMode, false);
-    darkModeMedia.addEventListener("change", ({ matches: newMode }) => {
-      localStorage.setItem("darkMode", newMode ? "enabled" : "disabled");
-      setDarkMode(newMode, true);
-    });
+  // Default to dark mode if not set in localStorage
+  if (localStorage.getItem("darkMode") === null) {
+    const isSystemInDark = window.matchMedia(
+      "(prefers-color-scheme: dark)"
+    ).matches;
+    localStorage.setItem("darkMode", isSystemInDark ? "enabled" : "disabled");
   }
 
-  // Use once option for one-time cleanup
-  window.addEventListener(
-    "load",
-    () => {
-      requestAnimationFrame(() => {
-        document.documentElement.classList.remove("preload");
-        document.documentElement.classList.add("animations-enabled");
-      });
-    },
-    { once: true },
-  );
+  const darkModeToggle = document.getElementById("darkModeToggle");
+  if (darkModeToggle) {
+    darkModeToggle.addEventListener("change", handleDarkModeToggle);
+
+    // Check localStorage and set initial state
+    const savedDarkMode = localStorage.getItem("darkMode");
+    setDarkMode(savedDarkMode === "enabled");
+  }
+
+  requestAnimationFrame(() => {
+    // Show dark mode toggle switch
+    const toggleSwitch = document.querySelector(".toggle-switch");
+    if (toggleSwitch)
+      toggleSwitch.classList.add("visible");
+  });
 }
 
 // Use immediate listener setup

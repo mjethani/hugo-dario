@@ -1,8 +1,4 @@
 <head>
-    <script>
-      document.documentElement.style.setProperty("--preload-visibility", "hidden");
-    </script>
-
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{{ .Title }}</title>
@@ -18,7 +14,9 @@
     <link rel="icon" type="image/x-icon" href="{{ "favicon.ico" | relURL }}" />
     <link rel="apple-touch-icon" href="{{ "apple-touch-icon.png" | relURL }}" />
 
-    <script src="{{ "js/init-darkmode.js" | relURL }}" defer></script>
+    {{ if not .Site.Params.hideDarkModeToggle }}
     <script src="{{ "js/darkmode.js" | relURL }}" defer></script>
+    {{ end }}
+
     <script src="{{ "js/footnotes.js" | relURL }}" defer></script>
 </head>
