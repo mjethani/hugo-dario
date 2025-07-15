@@ -24,6 +24,27 @@ Then, once you have the theme extracted, you can add it to your site's `config.t
 theme = "dario"
 ```
 
+If your site is a git repo, then instead of downloading the source as a zip, you can also just add it as a git submodule:
+
+```bash
+cd <my_site>
+git submodule add https://github.com/GrantBirki/dario.git themes/dario
+git commit -m "Add dario theme as submodule"
+```
+
+To upgrade to the latest version of the theme:
+
+```bash
+cd <my_site>
+cd themes/dario
+git checkout main
+git pull
+cd ../..
+git commit themes/dario -m "Upgrade to latest dario theme"
+```
+
+Either way, you must add it to your site's `config.toml` as shown above.
+
 ## Configuration
 
 You can further configure how this site looks by editing your `config.toml` file. Here is an example of a configuration that works with this theme:
