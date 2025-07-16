@@ -18,7 +18,7 @@
     <link rel="icon" type="image/x-icon" href="{{ "favicon.ico" | relURL }}" />
     <link rel="apple-touch-icon" href="{{ "apple-touch-icon.png" | relURL }}" />
 
-    {{ if not .Site.Params.hideDarkModeToggle }}
+    {{ if not .Site.Params.useSystemColorScheme }}
     <script src="{{ "js/darkmode.js" | relURL }}" defer></script>
     {{ end }}
 
