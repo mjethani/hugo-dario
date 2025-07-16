@@ -1,9 +1,12 @@
 {{ define "main" }}
     <h1>{{ .Title }}</h1>
     <h4>{{ .Params.description }}</h4>
+
+    {{ if .Section }}
     <p class="author-date">
         <time datetime="{{ .Date }}">{{ .Date.Format "January 2, 2006" }}</time>
     </p>
+    {{ end }}
 
     {{- if not (.Param "disableAnchoredHeadings") }}
     {{- partial "anchored_headings.html" .Content -}}
