@@ -1,0 +1,8 @@
+{{- $s := . -}}
+{{- $s = replace $s "&rsquo;" "’" -}}
+{{- $s = replace $s "&lsquo;" "‘" -}}
+{{- $s = replace $s "&rdquo;" "”" -}}
+{{- $s = replace $s "&ldquo;" "“" -}}
+{{- $s = replace $s "&ndash;" "–" -}}
+{{- $s = replace $s "&mdash;" "—" -}}
+{{- return $s -}}
