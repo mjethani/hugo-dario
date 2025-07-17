@@ -1,3 +1,3 @@
 module github.com/mjethani/hugo-dario
 
-go 1.24.5
+go 1.24
