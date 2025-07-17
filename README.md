@@ -16,7 +16,11 @@ This theme is designed to be minimal and the page speed insights are as follows:
 
 > To view a real example of a project using this theme, check out [grantbirki/log](https://github.com/GrantBirki/log) which is where I have the demo deployed.
 
-Download the source of this repo (dario) as a zip from GitHub and extract in your themes directory at `<my_site>/themes/dario`.
+You can install this theme in one of the following ways:
+
+### The Source
+
+Download the source of this repo (dario) [as a zip from GitHub](https://github.com/GrantBirki/dario/archive/refs/heads/main.zip) and extract in your themes directory at `<my_site>/themes/dario`.
 
 Then, once you have the theme extracted, you can add it to your site's `config.toml`:
 
@@ -24,14 +28,20 @@ Then, once you have the theme extracted, you can add it to your site's `config.t
 theme = "dario"
 ```
 
-### Git
+### As a Git Submodule
 
-If your site is a [Git](https://git-scm.com) repo, you can add this theme as a [Git submodule](https://git-scm.com/book/en/v2/Git-Tools-Submodules) instead of downloading it as a zip:
+Alternatively, if your site is a Git repo, you can add this theme as a [submodule](https://git-scm.com/book/en/v2/Git-Tools-Submodules) instead of downloading it as a zip:
 
 ```bash
 cd <my_site>
 git submodule add https://github.com/GrantBirki/dario.git themes/dario
 git commit -m "Add dario theme as submodule"
+```
+
+Add it to your site's `config.toml`:
+
+```toml
+theme = "dario"
 ```
 
 To upgrade to the latest version of the theme:
@@ -43,6 +53,42 @@ git checkout main
 git pull
 cd ../..
 git commit themes/dario -m "Upgrade to latest dario theme"
+```
+
+### As a Hugo Module
+
+And lastly, if you have the [latest version of Go](https://go.dev/doc/install), the best way to install this theme and keep up with improvements from time to time is to install it as a [Hugo module](https://gohugo.io/hugo-modules/).
+
+Initialize your site:
+
+```bash
+hugo mod init yoursite.com
+go mod edit -go=1.24
+```
+
+Add the following to your `config.toml`:
+
+```toml
+[module]
+  [[module.imports]]
+    path = "github.com/GrantBirki/dario"
+    version = "main"
+```
+
+Note that there's no `theme = "dario"` in this case. If you already have this in your `config.toml`, please remove it.
+
+Fetch the theme:
+
+```bash
+hugo mod get github.com/GrantBirki/dario@main
+hugo mod tidy
+```
+
+To upgrade to the latest version of the theme:
+
+```bash
+hugo mod get -u github.com/GrantBirki/dario@main
+hugo mod tidy
 ```
 
 ## Configuration
