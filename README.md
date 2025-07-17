@@ -24,7 +24,9 @@ Then, once you have the theme extracted, you can add it to your site's `config.t
 theme = "dario"
 ```
 
-If your site is a git repo, then instead of downloading the source as a zip, you can also just add it as a git submodule:
+### Git
+
+If your site is a [Git](https://git-scm.com) repo, you can add this theme as a [Git submodule](https://git-scm.com/book/en/v2/Git-Tools-Submodules) instead of downloading it as a zip:
 
 ```bash
 cd <my_site>
@@ -42,8 +44,6 @@ git pull
 cd ../..
 git commit themes/dario -m "Upgrade to latest dario theme"
 ```
-
-Either way, you must add it to your site's `config.toml` as shown above.
 
 ## Configuration
 
@@ -64,6 +64,15 @@ theme = "dario"
     Title = "Home Page Text" # the text to display on the "/" homepage
     Content = "This is a minimal web log inspired by Dario Amodei's personal [website](https://darioamodei.com/). Add some more text here that will be displayed on your homepage (you can use markdown)."
     Description = "A minimal web log." # The description of the home page that will be used in the open graph meta tags
+```
+
+### Optional Settings
+
+By default, the theme shows a toggle for switching between light and dark modes. To follow the user's system preference instead, set the `useSystemColorScheme` parameter:
+
+```toml
+[params]
+  useSystemColorScheme = true
 ```
 
 ## Blog Posts
