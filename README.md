@@ -165,6 +165,13 @@ build:
 
 Be sure to update the value of [`languageCode`](https://gohugo.io/configuration/all/#languagecode) in `config.toml` to match the primary language of your content.
 
+Set the `disableSocialMeta` parameter to turn off HTML tags related to [Open Graph](https://ogp.me) and [X Cards](https://developer.x.com/en/docs/x-for-websites/cards/overview/abouts-cards):
+
+```toml
+[params]
+  disableSocialMeta = true
+```
+
 ## Blog Posts
 
 Creating a blog post follows the same general process as most Hugo blogging themes.
