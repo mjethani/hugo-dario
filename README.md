@@ -128,6 +128,13 @@ By default, the theme shows a toggle for switching between light and dark modes.
   useSystemColorScheme = true
 ```
 
+Set the `disableSocialMeta` parameter to turn off HTML tags related to [Open Graph](https://ogp.me) and [X Cards](https://developer.x.com/en/docs/x-for-websites/cards/overview/abouts-cards):
+
+```toml
+[params]
+  disableSocialMeta = true
+```
+
 ## Blog Posts
 
 Creating a blog post follows the same general process as most Hugo blogging themes.
