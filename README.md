@@ -128,6 +128,12 @@ By default, the theme shows a toggle for switching between light and dark modes.
   useSystemColorScheme = true
 ```
 
+The home page shows the top-level section with the most pages by default. To override this, set `mainSections` to select specific sections:
+
+```toml
+mainSections = ['posts', 'essays', 'notes']
+```
+
 Set the `disableSocialMeta` parameter to turn off HTML tags related to [Open Graph](https://ogp.me) and [X Cards](https://developer.x.com/en/docs/x-for-websites/cards/overview/abouts-cards):
 
 ```toml
