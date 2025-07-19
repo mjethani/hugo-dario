@@ -1,6 +1,19 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    {{- with site.Params.author }}
+        {{- if reflect.IsMap . }}
+            {{- with .name }}
+    <meta name="author" content="{{ . }}" />
+            {{- end }}
+        {{- else }}
+    <meta name="author" content="{{ . }}" />
+        {{- end }}
+    {{- end }}
+
+    <meta name="description" content="{{ .Description | default (.Summary | plainify | htmlUnescape | replaceRE "\\s+" " ") | default .Site.Params.description | truncate 150 }}" />
+
     <title>{{ .Title | default .Site.Title }}</title>
 
     {{ if strings.HasSuffix .RelPermalink "/404.html" }}
@@ -12,9 +25,6 @@
 {{ partial "opengraph.html" . }}
         {{- end }}
     {{ end }}
-
-    <meta name="author" content="{{ .Site.Params.author }}" />
-    <meta name="description" content="{{ .Description | default (.Summary | plainify | htmlUnescape | replaceRE "\\s+" " ") | default .Site.Params.description | truncate 150 }}" />
 
     <link rel="preload" href="{{ "fonts/Newsreader.woff2" | relURL }}" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="{{ "fonts/Newsreader-italic.woff2" | relURL }}" as="font" type="font/woff2" crossorigin />
