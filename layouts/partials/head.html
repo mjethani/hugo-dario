@@ -41,4 +41,8 @@
     {{- end }}
 
     <script src="{{ "js/footnotes.js" | relURL }}" defer></script>
+
+    {{- if templates.Exists "partials/nonstdmeta.html" }}
+{{ partial "nonstdmeta.html" . }}
+    {{- end }}
 </head>
