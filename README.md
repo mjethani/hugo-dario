@@ -111,8 +111,7 @@ To add intro text to your home page, create a file at `content/_index.md` with c
 
 ```yaml
 ---
-[params.homeInfo]
-title: "Home Page Text" # the text to display on the "/" homepage
+subtitle: "Home Page Subtitle" # the subtitle to display on the "/" homepage
 description: "A minimal web log." # The description of the home page that will be used in the open graph meta tags
 ---
 

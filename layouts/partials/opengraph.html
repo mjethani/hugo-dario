@@ -1,13 +1,6 @@
 {{ $title := .Params.ogTitle | default .Title | default site.Title }}
 
-{{ $homeInfoDescription := "" }}
-{{ with site.GetPage "_index.md" }}
-  {{ with .Params.homeInfo }}
-    {{ $homeInfoDescription = .description }}
-  {{ end }}
-{{ end }}
-
-{{ $description := .Params.ogDescription | default .Description | default $homeInfoDescription | default (.Summary | plainify | htmlUnescape | replaceRE "\\s+" " ") | default site.Params.description | truncate 150 }}
+{{ $description := .Params.ogDescription | default .Description | default (.Summary | plainify | htmlUnescape | replaceRE "\\s+" " ") | default site.Params.description | truncate 150 }}
 
 <!-- Handle base URL for local dev vs production -->
 {{ $baseURL := .Site.BaseURL | strings.TrimSuffix "/" }}
