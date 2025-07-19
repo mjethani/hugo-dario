@@ -1,7 +1,7 @@
 {{ define "main" }}
-    {{- with .Site.GetPage "_intro.md" }}
+    {{- with .Site.GetPage "_index.md" }}
     <section>
-    <h1 class="smaller">{{ .Params.title }}</h1>
+    <h1 class="smaller">{{ cond .Params.homeInfo .Params.homeInfo.title "" }}</h1>
     {{ .Content }}
     </section>
     {{- end }}

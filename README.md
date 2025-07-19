@@ -107,11 +107,11 @@ theme = "dario"
   description = "A description of your site" # a description of your site that will be used in the meta tags
 ```
 
-To add intro text to your home page, create a file at `content/_intro.md` with contents similar to the following:
+To add intro text to your home page, create a file at `content/_index.md` with contents similar to the following:
 
 ```yaml
 ---
-headless: true
+[params.homeInfo]
 title: "Home Page Text" # the text to display on the "/" homepage
 description: "A minimal web log." # The description of the home page that will be used in the open graph meta tags
 ---
