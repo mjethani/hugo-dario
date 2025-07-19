@@ -1,7 +1,17 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="author" content="{{ .Site.Params.author }}" />
+
+    {{- with site.Params.author }}
+        {{- if reflect.IsMap . }}
+            {{- with .name }}
+    <meta name="author" content="{{ . }}" />
+            {{- end }}
+        {{- else }}
+    <meta name="author" content="{{ . }}" />
+        {{- end }}
+    {{- end }}
+
     <meta name="description" content="{{ .Description | default (.Summary | plainify | htmlUnescape | replaceRE "\\s+" " ") | default .Site.Params.description | truncate 150 }}" />
 
     <title>{{ .Title | default .Site.Title }}</title>
