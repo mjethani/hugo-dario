@@ -153,6 +153,13 @@ You can add your own custom CSS in `assets/css/custom.css`:
 }
 ```
 
+If you override the default base font, you might also want to turn off font preloading:
+
+```toml
+[params]
+  disableFontPreload = true
+```
+
 To override the generated `404.html`, create `content/_404.md` with your customized text. For example, the following file contains a Hindi version of the default message:
 
 ```yaml
