@@ -12,7 +12,7 @@
         {{- end }}
     {{- end }}
 
-    <meta name="description" content="{{ .Description | default (.Summary | plainify | htmlUnescape | replaceRE "\\s+" " ") | default .Site.Params.description | truncate 150 }}" />
+    <meta name="description" content="{{- .Description | default (.Summary | plainify | htmlUnescape | replaceRE "\\s+" " " | replaceRE "^ +| +$" "") | default .Site.Params.description | truncate 150 -}}" />
 
     <title>{{ .Title | default .Site.Title }}</title>
 
@@ -24,7 +24,7 @@
         {{- if not .Site.Params.disableSocialMeta }}
 {{ partial "opengraph.html" . }}
         {{- end }}
-    {{ end }}
+    {{- end }}
 
     {{- if not .Site.Params.disableFontPreload }}
     <link rel="preload" href="{{ "fonts/Newsreader.woff2" | relURL }}" as="font" type="font/woff2" crossorigin />
