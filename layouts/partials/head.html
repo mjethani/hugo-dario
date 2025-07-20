@@ -6,9 +6,10 @@
     <meta name="author" content="{{ . }}">
     {{- end }}
 
-    <meta name="description" content="{{- .Description | default (.Summary | plainify | htmlUnescape | replaceRE "\\s+" " " | replaceRE "^ +| +$" "") | default .Site.Params.description | truncate 150 -}}">
+    {{- $page := partial "objects/page.html" . }}
+    <meta name="description" content="{{- $page.description -}}">
 
-    <title>{{ .Title | default .Site.Title }}</title>
+    <title>{{ $page.title }}</title>
 
     {{- if strings.HasSuffix .RelPermalink "/404.html" }}
     <meta name="robots" content="noindex, nofollow">

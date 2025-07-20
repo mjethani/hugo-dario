@@ -1,6 +1,6 @@
-{{- $title := .Params.ogTitle | default .Title | default site.Title -}}
-
-{{- $description := .Params.ogDescription | default .Description | default (.Summary | plainify | htmlUnescape | replaceRE "\\s+" " " | replaceRE "^ +| +$" "") | default site.Params.description | truncate 150 -}}
+{{- $page := partial "objects/page.html" . -}}
+{{- $title := .Params.ogTitle | default $page.title -}}
+{{- $description := .Params.ogDescription | default $page.description -}}
 
 {{- /* Handle base URL for local dev vs production */ -}}
 {{- $baseURL := .Site.BaseURL | strings.TrimSuffix "/" }}
