@@ -1,5 +1,8 @@
 <!doctype html>
-<html lang="{{- .Site.Language.LanguageCode -}}">
+<html lang="{{- .Site.Language.LanguageCode -}}"
+{{- if eq .Site.Params.colorScheme "dark" }} class="dark-mode-on"
+{{- else if eq .Site.Params.colorScheme "light" }} class="dark-mode-off"
+{{- end }}>
 
 {{ partial "head.html" . }}
 

@@ -51,7 +51,7 @@
 
     {{- $inlineJS := .Site.Params.inlineJS }}
 
-    {{- if not .Site.Params.useSystemColorScheme }}
+    {{- if or (not .Site.Params.colorScheme) (eq .Site.Params.colorScheme "toggle") }}
         {{- $darkmodeJS := resources.Get "js/darkmode.js" | minify | fingerprint }}
         {{- if $inlineJS }}
     <script>
