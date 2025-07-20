@@ -1,0 +1,21 @@
+{{ $name := "" }}
+{{ $email := "" }}
+{{ $x := "" }}
+
+{{ with site.Params.author }}
+    {{ if reflect.IsMap . }}
+        {{ with .name }}
+            {{ $name = . }}
+        {{ end }}
+        {{ with .email }}
+            {{ $email = . }}
+        {{ end }}
+        {{ with .x }}
+            {{ $x = . }}
+        {{ end }}
+    {{ else }}
+        {{ $name = . }}
+    {{ end }}
+{{ end }}
+
+{{ return dict "name" $name "email" $email "x" $x }}
