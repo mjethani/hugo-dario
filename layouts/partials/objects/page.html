@@ -1,0 +1,12 @@
+{{ $title := .Title | default .Site.Title }}
+
+{{ $_summary := .Summary }}
+{{ $_summary = $_summary | plainify }}
+{{ $_summary = $_summary | htmlUnescape }}
+{{ $_summary = $_summary | replaceRE "\\s+" " " }}
+{{ $_summary = $_summary | replaceRE "^ +| +$" "" }}
+
+{{ $description := .Description | default $_summary | default .Site.Params.description }}
+{{ $description = $description | truncate 150 }}
+
+{{ return dict "title" $title "description" $description }}
