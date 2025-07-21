@@ -100,6 +100,8 @@ baseURL = "https://yoursite.com/"
 languageCode = "en-us"
 title = "log" # the title of your site
 
+copyright = "Copyright © 2025 Your Name. All rights reserved."
+
 theme = "dario"
 
 [params]
@@ -136,6 +138,36 @@ The home page shows the top-level section with the most pages by default. To ove
 ```toml
 mainSections = ['posts', 'essays', 'notes']
 ```
+
+You can add your own custom CSS in `assets/css/custom.css`:
+
+```css
+/* Use the black star as the bullet in unordered lists. */
+.content-container ul {
+  list-style: none;
+  padding-left: 0;
+}
+.content-container ul > li::before {
+  content: '★';
+  margin-right: 0.5em;
+}
+```
+
+To override the generated `404.html`, create `content/_404.md` with your customized text. For example, the following file contains a Hindi version of the default message:
+
+```yaml
+---
+subtitle: "४०४"
+
+build:
+  render: never
+  list: never
+---
+
+पृष्ठ नहीं मिला।
+```
+
+Be sure to update the value of [`languageCode`](https://gohugo.io/configuration/all/#languagecode) in `config.toml` to match the primary language of your content.
 
 Set the `disableSocialMeta` parameter to turn off HTML tags related to [Open Graph](https://ogp.me) and [X Cards](https://developer.x.com/en/docs/x-for-websites/cards/overview/abouts-cards):
 
