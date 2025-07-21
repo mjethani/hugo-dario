@@ -76,6 +76,6 @@
 <meta name="twitter:title" content="{{ $title }}">
 <meta name="twitter:description" content="{{ $description }}">
 <meta name="twitter:image" content="{{ $baseURL }}{{ $ogImageURL }}">
-{{- with $x := (partial "objects/author.html" .).x }}
+{{- with (partial "objects/author.html" .).twitter }}
 <meta name="twitter:creator" content="{{ . }}">
 {{- end }}

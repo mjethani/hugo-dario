@@ -1,6 +1,6 @@
 {{ $name := "" }}
 {{ $email := "" }}
-{{ $x := "" }}
+{{ $twitter := "" }}
 
 {{ with site.Params.author }}
     {{ if reflect.IsMap . }}
@@ -10,12 +10,12 @@
         {{ with .email }}
             {{ $email = . }}
         {{ end }}
-        {{ with .x }}
-            {{ $x = . }}
+        {{ with .twitter }}
+            {{ $twitter = . }}
         {{ end }}
     {{ else }}
         {{ $name = . }}
     {{ end }}
 {{ end }}
 
-{{ return dict "name" $name "email" $email "x" $x }}
+{{ return dict "name" $name "email" $email "twitter" $twitter }}
