@@ -110,7 +110,7 @@ theme = "dario"
   [params.author]
     name = "Your Name" # the author of the site
     email = "you@example.com" # the site author's email address
-    x = "@YourXHandle" # the site author's X handle
+    twitter = "@YourXHandle" # the site author's X/Twitter handle
 ```
 
 To add intro text to your home page, create a file at `content/_index.md` with contents similar to the following:

@@ -78,7 +78,7 @@
 <meta name="twitter:image" content="{{ $baseURL }}{{ $ogImageURL }}" />
 {{- with site.Params.author }}
   {{- if reflect.IsMap . }}
-    {{- with .x }}
+    {{- with .twitter }}
 <meta name="twitter:creator" content="{{ . }}" />
     {{- end }}
   {{- end }}
