@@ -23,6 +23,7 @@ features = [
 
 authors = [
   {name = "Grant Birkinbine", homepage = "https://github.com/grantbirki"},
+  {name = "Manish Jethani", homepage = "https://manishjethani.com/"},
   {name = "Dario Amodei", homepage = "https://darioamodei.com/"}
 ]
 
