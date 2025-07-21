@@ -1,8 +1,8 @@
 <!doctype html>
-<html lang="{{- .Site.Language.LanguageCode -}}"
-{{- if eq .Site.Params.colorScheme "dark" }} class="dark-mode-on"
-{{- else if eq .Site.Params.colorScheme "light" }} class="dark-mode-off"
-{{- end }}>
+<html lang="{{- .Site.Language.LanguageCode -}}" class="kind-{{ .Kind }}
+{{- if eq .Site.Params.colorScheme "dark" }} dark-mode-on
+{{- else if eq .Site.Params.colorScheme "light" }} dark-mode-off
+{{- end }}">
 
 {{ partial "head.html" . }}
 
