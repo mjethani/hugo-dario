@@ -105,8 +105,12 @@ copyright = "Copyright © 2025 Your Name. All rights reserved."
 theme = "dario"
 
 [params]
-  author = "Your Name" # the author of the site
   description = "A description of your site" # a description of your site that will be used in the meta tags
+
+  [params.author]
+    name = "Your Name" # the author of the site
+    email = "you@example.com" # the site author's email address
+    twitter = "@YourXHandle" # the site author's X/Twitter handle
 ```
 
 To add intro text to your home page, create a file at `content/_index.md` with contents similar to the following:
