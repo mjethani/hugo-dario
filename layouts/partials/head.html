@@ -36,13 +36,15 @@
     <link rel="stylesheet" href="{{ $defaultCSS.RelPermalink }}" integrity="{{ $defaultCSS.Data.Integrity }}">
     {{- end }}
 
-    {{- with resources.Get "css/custom.css" | minify | fingerprint }}
-        {{- if $inlineCSS }}
+    {{- with resources.Get "css/custom.css" }}
+        {{- with . | minify | fingerprint }}
+            {{- if $inlineCSS }}
     <style>
 {{ .Content | safeCSS }}
     </style>
-        {{- else }}
+            {{- else }}
     <link rel="stylesheet" href="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}">
+            {{- end }}
         {{- end }}
     {{- end }}
 
