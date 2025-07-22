@@ -124,6 +124,8 @@ description: "A minimal web log." # The description of the home page that will b
 This is a minimal web log inspired by Dario Amodei's personal [website](https://darioamodei.com/). Add some more text here that will be displayed on your homepage (you can use markdown).
 ```
 
+> Note: In the front matter yaml above, you can also set `homePageIsPost: true` to hydrate the landing page like a blog post. This is an alternate way to view the home page and is somewhat experimental.
+
 ### Optional Settings
 
 By default, the theme shows a toggle for switching between light and dark modes. To follow the user's system preference instead, set the `useSystemColorScheme` parameter:
