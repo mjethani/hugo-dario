@@ -1,3 +1,3 @@
-module github.com/mjethani/hugo-dario@manishjethani.com
+module github.com/mjethani/hugo-dario
 
 go 1.24
