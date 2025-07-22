@@ -153,6 +153,13 @@ You can add your own custom CSS in `assets/css/custom.css`:
 }
 ```
 
+If you override the default base font, you might also want to turn off font preloading:
+
+```toml
+[params]
+  disableFontPreload = true
+```
+
 To override the generated `404.html`, create `content/_404.md` with your customized text. For example, the following file contains a Hindi version of the default message:
 
 ```yaml
@@ -174,6 +181,16 @@ Set the `disableSocialMeta` parameter to turn off HTML tags related to [Open Gra
 ```toml
 [params]
   disableSocialMeta = true
+```
+
+If you wish to add your own non-standard meta tags for things like Bitcoin,
+PGP, and so on, you can add them in `layouts/partials/nonstdmeta.md`:
+
+```html
+<meta name="email" content="mail@example.com">
+<meta name="bitcoin" content="bc1...">
+
+<link rel="pgpkey" href="/pgp/key.asc">
 ```
 
 ## Blog Posts
