@@ -183,6 +183,16 @@ Set the `disableSocialMeta` parameter to turn off HTML tags related to [Open Gra
   disableSocialMeta = true
 ```
 
+If you wish to add your own non-standard meta tags for things like Bitcoin,
+PGP, and so on, you can add them in `layouts/partials/nonstdmeta.md`:
+
+```html
+<meta name="email" content="mail@example.com">
+<meta name="bitcoin" content="bc1...">
+
+<link rel="pgpkey" href="/pgp/key.asc">
+```
+
 ## Blog Posts
 
 Creating a blog post follows the same general process as most Hugo blogging themes.
