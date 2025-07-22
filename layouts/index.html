@@ -13,10 +13,16 @@
     <section>
     <h2>{{ .Title }}</h2>
     <ul>
-        {{- range where .Site.RegularPages "Section" .Section }}
+        {{- $pages := where .Site.RegularPages "Section" .Section }}
+        {{- $sectionSize := .Site.Params.homeSectionSize | default 5 }}
+        {{- $topPages := first $sectionSize $pages }}
+        {{- range $topPages }}
         <li><a href="{{ .Permalink }}">{{ .Title }}</a></li>
         {{- end }}
     </ul>
+        {{- if gt (len $pages) $sectionSize }}
+    <p class="more-link"><a href="{{ .RelPermalink }}">&raquo;</a></p>
+        {{- end }}
     </section>
     {{- end }}
 {{- end }}
