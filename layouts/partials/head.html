@@ -39,11 +39,13 @@
     <link rel="icon" type="image/x-icon" href="{{ "favicon.ico" | relURL }}" />
     <link rel="apple-touch-icon" href="{{ "apple-touch-icon.png" | relURL }}" />
 
-    {{ if not .Site.Params.useSystemColorScheme }}
-    <script src="{{ "js/darkmode.js" | relURL }}" defer></script>
-    {{ end }}
+    {{- if not .Site.Params.useSystemColorScheme }}
+    {{- $darkmodeJS := resources.Get "js/darkmode.js" | minify | fingerprint }}
+    <script src="{{ $darkmodeJS.RelPermalink }}" integrity="{{ $darkmodeJS.Data.Integrity }}" defer></script>
+    {{- end }}
 
-    <script src="{{ "js/footnotes.js" | relURL }}" defer></script>
+    {{- $footnotesJS := resources.Get "js/footnotes.js" | minify | fingerprint }}
+    <script src="{{ $footnotesJS.RelPermalink }}" integrity="{{ $footnotesJS.Data.Integrity }}" defer></script>
 
     {{- if templates.Exists "partials/nonstdmeta.html" }}
 {{ partial "nonstdmeta.html" . }}
