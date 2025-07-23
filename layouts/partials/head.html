@@ -2,19 +2,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    {{- with site.Params.author }}
-        {{- if reflect.IsMap . }}
-            {{- with .name }}
+    {{- with (partial "objects/author.html" .).name }}
     <meta name="author" content="{{ . }}">
-            {{- end }}
-        {{- else }}
-    <meta name="author" content="{{ . }}">
-        {{- end }}
     {{- end }}
 
-    <meta name="description" content="{{- .Description | default (.Summary | plainify | htmlUnescape | replaceRE "\\s+" " " | replaceRE "^ +| +$" "") | default .Site.Params.description | truncate 150 -}}">
+    {{- $page := partial "objects/page.html" . }}
+    <meta name="description" content="{{- $page.description -}}">
 
-    <title>{{ .Title | default .Site.Title }}</title>
+    <title>{{ $page.title }}</title>
 
     {{- if strings.HasSuffix .RelPermalink "/404.html" }}
     <meta name="robots" content="noindex, nofollow">
