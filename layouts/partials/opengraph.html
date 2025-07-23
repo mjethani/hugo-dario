@@ -1,25 +1,25 @@
-{{ $title := .Params.ogTitle | default .Title | default site.Title }}
+{{- $title := .Params.ogTitle | default .Title | default site.Title -}}
 
-{{ $description := .Params.ogDescription | default .Description | default (.Summary | plainify | htmlUnescape | replaceRE "\\s+" " ") | default site.Params.description | truncate 150 }}
+{{- $description := .Params.ogDescription | default .Description | default (.Summary | plainify | htmlUnescape | replaceRE "\\s+" " " | replaceRE "^ +| +$" "") | default site.Params.description | truncate 150 -}}
 
-<!-- Handle base URL for local dev vs production -->
-{{ $baseURL := .Site.BaseURL | strings.TrimSuffix "/" }}
-{{ if not (strings.Contains $baseURL "localhost") }}
-  {{ if not (strings.HasPrefix $baseURL "https://") }}
-    {{ $baseURL = replace $baseURL "http://" "https://" }}
-  {{ end }}
-{{ end }}
+{{- /* Handle base URL for local dev vs production */ -}}
+{{- $baseURL := .Site.BaseURL | strings.TrimSuffix "/" }}
+{{- if not (strings.Contains $baseURL "localhost") }}
+    {{- if not (strings.HasPrefix $baseURL "https://") }}
+        {{- $baseURL = replace $baseURL "http://" "https://" }}
+    {{- end }}
+{{- end }}
 
-{{ $uniqueName := "" }}
-{{ $isDefault := false }}
-{{ with .File }}
-  {{ $uniqueName = printf "og/og-image-%s.svg" .UniqueID }}
-{{ else }}
-  {{ $uniqueName = "default.png" }}
-  {{ $isDefault = true }}
-{{ end }}
+{{- $uniqueName := "" }}
+{{- $isDefault := false }}
+{{- with .File }}
+    {{- $uniqueName = printf "og/og-image-%s.svg" .UniqueID }}
+{{- else }}
+    {{- $uniqueName = "default.png" }}
+    {{- $isDefault = true }}
+{{- end }}
 
-{{ $svg := printf `
+{{- $svg := printf `
     <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
         <style>
             svg {
@@ -46,19 +46,19 @@
     </svg>
     ` ($title | htmlEscape) $description | safeHTML }}
 
-{{ $generatedSVG := resources.FromString $uniqueName $svg | resources.ExecuteAsTemplate $uniqueName . }}
+{{- $generatedSVG := resources.FromString $uniqueName $svg | resources.ExecuteAsTemplate $uniqueName . -}}
 
-<!-- Determine which image URL to use -->
-{{ $ogImageURL := "" }}
-{{ if $isDefault }}
-  {{ $ogImageURL = "/default.png" }}
-{{ else }}
-  {{ with .Params.ogImage }}
-    {{ $ogImageURL = . }}
-  {{ else }}
-    {{ $ogImageURL = $generatedSVG.RelPermalink }}
-  {{ end }}
-{{ end }}
+{{- /* Determine which image URL to use */ -}}
+{{- $ogImageURL := "" }}
+{{- if $isDefault }}
+    {{- $ogImageURL = "/default.png" }}
+{{- else }}
+    {{- with .Params.ogImage }}
+        {{- $ogImageURL = . }}
+    {{- else }}
+        {{- $ogImageURL = $generatedSVG.RelPermalink }}
+    {{- end }}
+{{- end }}
 
 <!-- General Open Graph Meta Tags -->
 <meta property="og:title" content="{{ $title }}" />
@@ -77,9 +77,9 @@
 <meta name="twitter:description" content="{{ $description }}" />
 <meta name="twitter:image" content="{{ $baseURL }}{{ $ogImageURL }}" />
 {{- with site.Params.author }}
-  {{- if reflect.IsMap . }}
-    {{- with .twitter }}
+    {{- if reflect.IsMap . }}
+        {{- with .twitter }}
 <meta name="twitter:creator" content="{{ . }}" />
+        {{- end }}
     {{- end }}
-  {{- end }}
 {{- end }}
