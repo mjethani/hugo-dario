@@ -1,6 +1,6 @@
 "use strict";
 
-document.addEventListener("DOMContentLoaded", () => {
+function initFootnotes() {
   const TOOLTIP_DELAY = 500;
   const DISMISS_DELAY = 300;
   const MOUSE_TOLERANCE = 5;
@@ -157,4 +157,13 @@ document.addEventListener("DOMContentLoaded", () => {
       timeout = setTimeout(() => func.apply(this, args), wait);
     };
   }
-});
+}
+
+// Since this script may be either loaded as an external JS file or
+// inlined within HTML, all code must run only on or after the
+// DOMContentLoaded event.
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", initFootnotes);
+} else {
+  initFootnotes();
+}
