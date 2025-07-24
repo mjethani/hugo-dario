@@ -64,9 +64,4 @@ function initDarkMode() {
   });
 }
 
-// Use immediate listener setup
-if (document.readyState === "loading") {
-  document.addEventListener("DOMContentLoaded", initDarkMode);
-} else {
-  initDarkMode();
-}
+document.addEventListener("DOMContentLoaded", initDarkMode);

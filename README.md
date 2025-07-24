@@ -162,13 +162,15 @@ If you override the default base font, you might also want to turn off font prel
   disableFontPreload = true
 ```
 
-You can inline all styles and scripts directly within the HTML instead of loading them as separate files:
+Inlining all styles and scripts directly within the HTML can simplify deployment and speed up initial page load:
 
 ```toml
 [params]
   inlineCSS = true
   inlineJS = true
 ```
+
+Whether this is optimal depends on the site's structure, server-side [`Cache-Control` settings](https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Caching), and other factors.
 
 To override the generated `404.html`, create `content/_404.md` with your customized text. For example, the following file contains a Hindi version of the default message:
 
