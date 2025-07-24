@@ -162,7 +162,7 @@ If you override the default base font, you might also want to turn off font prel
   disableFontPreload = true
 ```
 
-Inlining all styles and scripts directly within the HTML can simplify deployment and speed up initial page load:
+Inlining all styles and scripts directly within the HTML can simplify deployment and improve initial page load speed, as everything is bundled into a single HTML file. The trade-off is reduced caching efficiency, since CSS and JavaScript are no longer separate cacheable files. By default, this project does not inline CSS or JavaScript, but you can enable it with the following settings:
 
 ```toml
 [params]
@@ -172,7 +172,7 @@ Inlining all styles and scripts directly within the HTML can simplify deployment
 
 Whether this is optimal depends on the site's structure, server-side [`Cache-Control` settings](https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Caching), and other factors.
 
-It's also important to note that inlining of CSS and JavaScript comes with **security risks** and should generally be avoided.
+It's also important to note that inlining of CSS and JavaScript comes with **security risks** and is generally discouraged.
 
 To override the generated `404.html`, create `content/_404.md` with your customized text. For example, the following file contains a Hindi version of the default message:
 
