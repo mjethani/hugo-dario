@@ -26,24 +26,52 @@
     <link rel="preload" href="{{ "fonts/Newsreader-italic.woff2" | relURL }}" as="font" type="font/woff2" crossorigin>
     {{- end }}
 
+    {{- $inlineCSS := .Site.Params.inlineCSS }}
+
     {{- $defaultCSS := resources.Get "css/default.css" | minify | fingerprint }}
+    {{- if $inlineCSS }}
+    <style>
+{{ $defaultCSS.Content | safeCSS }}
+    </style>
+    {{- else }}
     <link rel="stylesheet" href="{{ $defaultCSS.RelPermalink }}" integrity="{{ $defaultCSS.Data.Integrity }}">
+    {{- end }}
     {{- with resources.Get "css/custom.css" }}
         {{- with . | minify | fingerprint }}
+            {{- if $inlineCSS }}
+    <style>
+{{ .Content | safeCSS }}
+    </style>
+            {{- else }}
     <link rel="stylesheet" href="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}">
+            {{- end }}
         {{- end }}
     {{- end }}
 
     <link rel="icon" type="image/x-icon" href="{{ "favicon.ico" | relURL }}">
     <link rel="apple-touch-icon" href="{{ "apple-touch-icon.png" | relURL }}">
 
+    {{- $inlineJS := .Site.Params.inlineJS }}
+
     {{- if not .Site.Params.useSystemColorScheme }}
-    {{- $darkmodeJS := resources.Get "js/darkmode.js" | minify | fingerprint }}
+        {{- $darkmodeJS := resources.Get "js/darkmode.js" | minify | fingerprint }}
+        {{- if $inlineJS }}
+    <script>
+{{ $darkmodeJS.Content | safeJS }}
+    </script>
+        {{- else }}
     <script src="{{ $darkmodeJS.RelPermalink }}" integrity="{{ $darkmodeJS.Data.Integrity }}" defer></script>
+        {{- end }}
     {{- end }}
 
     {{- $footnotesJS := resources.Get "js/footnotes.js" | minify | fingerprint }}
+    {{- if $inlineJS }}
+    <script>
+{{ $footnotesJS.Content | safeJS }}
+    </script>
+    {{- else }}
     <script src="{{ $footnotesJS.RelPermalink }}" integrity="{{ $footnotesJS.Data.Integrity }}" defer></script>
+    {{- end }}
 
     {{- if templates.Exists "partials/nonstdmeta.html" }}
 {{ partial "nonstdmeta.html" . }}

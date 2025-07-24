@@ -162,6 +162,14 @@ If you override the default base font, you might also want to turn off font prel
   disableFontPreload = true
 ```
 
+You can inline all styles and scripts directly within the HTML instead of loading them as separate files:
+
+```toml
+[params]
+  inlineCSS = true
+  inlineJS = true
+```
+
 To override the generated `404.html`, create `content/_404.md` with your customized text. For example, the following file contains a Hindi version of the default message:
 
 ```yaml
