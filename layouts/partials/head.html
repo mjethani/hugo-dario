@@ -25,10 +25,10 @@
     <link rel="preload" href="{{ "fonts/Newsreader-italic.woff2" | relURL }}" as="font" type="font/woff2" crossorigin>
     {{- end }}
 
-    {{- $inlineCSS := .Site.Params.inlineCSS }}
+    {{- $unsafeInlineCSS := .Site.Params.unsafeInlineCSS }}
 
     {{- $defaultCSS := resources.Get "css/default.css" | minify | fingerprint }}
-    {{- if $inlineCSS }}
+    {{- if $unsafeInlineCSS }}
     <style>
 {{ $defaultCSS.Content | safeCSS }}
     </style>
@@ -38,7 +38,7 @@
 
     {{- with resources.Get "css/custom.css" }}
         {{- with . | minify | fingerprint }}
-            {{- if $inlineCSS }}
+            {{- if $unsafeInlineCSS }}
     <style>
 {{ .Content | safeCSS }}
     </style>
@@ -51,13 +51,15 @@
     <link rel="icon" type="image/x-icon" href="{{ "favicon.ico" | relURL }}">
     <link rel="apple-touch-icon" href="{{ "apple-touch-icon.png" | relURL }}">
 
-    {{- $inlineJS := .Site.Params.inlineJS }}
+    {{- $unsafeInlineJS := .Site.Params.unsafeInlineJS }}
 
     {{- if or (not .Site.Params.colorScheme) (eq .Site.Params.colorScheme "toggle") }}
         {{- $darkmodeJS := resources.Get "js/darkmode.js" | minify | fingerprint }}
-        {{- if $inlineJS }}
+        {{- if $unsafeInlineJS }}
     <script>
+      document.addEventListener("DOMContentLoaded", () => {
 {{ $darkmodeJS.Content | safeJS }}
+      });
     </script>
         {{- else }}
     <script src="{{ $darkmodeJS.RelPermalink }}" integrity="{{ $darkmodeJS.Data.Integrity }}" defer></script>
@@ -65,9 +67,11 @@
     {{- end }}
 
     {{- $footnotesJS := resources.Get "js/footnotes.js" | minify | fingerprint }}
-    {{- if $inlineJS }}
+    {{- if $unsafeInlineJS }}
     <script>
+      document.addEventListener("DOMContentLoaded", () => {
 {{ $footnotesJS.Content | safeJS }}
+      });
     </script>
     {{- else }}
     <script src="{{ $footnotesJS.RelPermalink }}" integrity="{{ $footnotesJS.Data.Integrity }}" defer></script>
