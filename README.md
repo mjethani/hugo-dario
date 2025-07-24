@@ -166,11 +166,13 @@ Inlining all styles and scripts directly within the HTML can simplify deployment
 
 ```toml
 [params]
-  inlineCSS = true
-  inlineJS = true
+  unsafeInlineCSS = true
+  unsafeInlineJS = true
 ```
 
 Whether this is optimal depends on the site's structure, server-side [`Cache-Control` settings](https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Caching), and other factors.
+
+It's also important to note that inlining of CSS and JavaScript comes with **security risks** and should generally be avoided.
 
 To override the generated `404.html`, create `content/_404.md` with your customized text. For example, the following file contains a Hindi version of the default message:
 
