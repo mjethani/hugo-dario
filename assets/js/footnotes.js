@@ -1,5 +1,8 @@
 "use strict";
 
+// Since this script may be either loaded as an external JS file or
+// inlined within HTML, all code must run only on or after the
+// DOMContentLoaded event.
 document.addEventListener("DOMContentLoaded", () => {
   const TOOLTIP_DELAY = 500;
   const DISMISS_DELAY = 300;
