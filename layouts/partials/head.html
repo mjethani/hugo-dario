@@ -57,7 +57,9 @@
         {{- $darkmodeJS := resources.Get "js/darkmode.js" | minify | fingerprint }}
         {{- if $inlineJS }}
     <script>
+      document.addEventListener("DOMContentLoaded", () => {
 {{ $darkmodeJS.Content | safeJS }}
+      });
     </script>
         {{- else }}
     <script src="{{ $darkmodeJS.RelPermalink }}" integrity="{{ $darkmodeJS.Data.Integrity }}" defer></script>
@@ -67,7 +69,9 @@
     {{- $footnotesJS := resources.Get "js/footnotes.js" | minify | fingerprint }}
     {{- if $inlineJS }}
     <script>
+      document.addEventListener("DOMContentLoaded", () => {
 {{ $footnotesJS.Content | safeJS }}
+      });
     </script>
     {{- else }}
     <script src="{{ $footnotesJS.RelPermalink }}" integrity="{{ $footnotesJS.Data.Integrity }}" defer></script>

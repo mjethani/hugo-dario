@@ -67,4 +67,8 @@ function initDarkMode() {
 // Since this script may be either loaded as an external JS file or
 // inlined within HTML, all code must run only on or after the
 // DOMContentLoaded event.
-document.addEventListener("DOMContentLoaded", initDarkMode);
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", initDarkMode);
+} else {
+  initDarkMode();
+}
