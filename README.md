@@ -135,7 +135,7 @@ By default, the theme shows a toggle for switching between light and dark modes.
   colorScheme = 'system'
 ```
 
-You can also set it to `'light'` or `'dark'` to keep it fixed.
+You can also set it to `'light'` or `'dark'` to keep it fixed. The default behavior is to have it set as `'toggle'` which displays a toggle and on first page load it defaults to the user's system preference.
 
 The home page shows the top-level section with the most pages by default. To override this, set `mainSections` to select specific sections:
 
