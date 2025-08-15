@@ -151,8 +151,10 @@ body {
   line-height: 1.6;
   color: var(--text-color);
   background-color: var(--bg-color);
-  margin: 0;
-  padding: 0;
+  margin-block: 0;
+  margin-inline: 0;
+  padding-block: 0;
+  padding-inline: 0;
   transition: background-color 0.2s ease, color 0.2s ease;
 }
 
@@ -231,7 +233,8 @@ p.intro {
 header > div {
   max-inline-size: var(--content-max-inline-size);
   margin-inline: auto;
-  padding: var(--content-padding);
+  padding-block: var(--content-padding);
+  padding-inline: var(--content-padding);
   box-sizing: border-box;
 }
 
@@ -270,7 +273,8 @@ header h1 a {
   font-weight: 600;
   font-size: 1.2em;
   line-height: 44px;
-  margin: 0;
+  margin-block: 0;
+  margin-inline: 0;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -525,7 +529,8 @@ sup[id^="fnref"] a:focus {
   position: absolute;
   background-color: var(--tooltip-bg-color);
   color: var(--tooltip-text-color);
-  padding: 20px;
+  padding-block: 20px;
+  padding-inline: 20px;
   border-radius: 4px;
   box-shadow: 0 2px 8px var(--tooltip-shadow-color);
   max-inline-size: 400px;
@@ -536,8 +541,8 @@ sup[id^="fnref"] a:focus {
 }
 
 .footnote-tooltip p {
-  margin: 0;
-  margin-block-end: 8px;
+  margin-block: 0 8px;
+  margin-inline: 0;
   display: block;
   align-items: flex-start;
 }
@@ -620,7 +625,8 @@ footer {
 
 .subscribe-form .email-input {
   inline-size: 100%;
-  padding: 10px;
+  padding-block: 10px;
+  padding-inline: 10px;
   margin-block-end: 10px;
   border: 2px solid var(--border-color);
   border-radius: 4px;
@@ -633,7 +639,8 @@ footer {
 
 .subscribe-form .submit-button {
   inline-size: 100%;
-  padding: 10px;
+  padding-block: 10px;
+  padding-inline: 10px;
   background-color: var(--subscribe-button-bg);
   color: var(--subscribe-button-text);
   border: none;
